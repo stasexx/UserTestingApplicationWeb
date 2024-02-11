@@ -3,6 +3,11 @@ export interface User {
     name: string
   }
 
+export interface Token {
+    accessToken: string
+  }
+
+
 export interface UserName {
     name: string
   }

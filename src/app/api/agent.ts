@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { store } from '../stores/store';
-import { User, UserName } from '../models/user';
+import { Token, User, UserName } from '../models/user';
+import { Test } from '../models/test';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -41,13 +42,18 @@ const requests =
 
 const Account = {
     current: () => requests.get('/users/get'),
-    login: (user: UserName) => requests.post<User>('/users/login', user),
+    login: (user: UserName) => requests.post<Token>('/users/login', user),
     register: (user: UserName) => requests.post<User>('users/register', user)
+}
+
+const Tests = {
+    list: (id: string) => requests.getMapping<Test[]>(`/tests/list/${id}?pageNumber=1&pageSize=20`),
 }
 
 const agent = 
 {
-    Account
+    Account,
+    Tests
 }
 
 export default agent;

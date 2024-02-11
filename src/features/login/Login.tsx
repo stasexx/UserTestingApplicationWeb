@@ -7,16 +7,14 @@ interface LoginProps {
 
 export const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [name, setUsername] = useState('');
-  const { userStore } = useStore(); // Імпортуємо наш store
+  const { userStore } = useStore();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Тепер використовуємо функцію register з userStore
     try {
       await userStore.login({ name });
-      onLogin(name); // Якщо реєстрація успішна, виконуємо onLogin
+      onLogin(name);
     } catch (error) {
-      // Обробка помилок, можливо відображення повідомлення користувачеві
       console.error("Error during registration:", error);
     }
   };
