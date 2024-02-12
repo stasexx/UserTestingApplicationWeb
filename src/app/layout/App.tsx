@@ -9,7 +9,6 @@ const App: React.FC = () => {
 
   const handleLogin = (username: string) => {
     setUsername(username);
-    // Тут можна зберегти ім'я користувача у стан або у localStorage/sessionStorage
   };
 
   return (

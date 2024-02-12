@@ -2,6 +2,8 @@ import axios, { AxiosResponse } from 'axios';
 import { store } from '../stores/store';
 import { Token, User, UserName } from '../models/user';
 import { Test } from '../models/test';
+import { QuestionOption } from '../models/question';
+
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -38,6 +40,7 @@ const requests =
     post: <T> (url: string, body: object) => axios.post<T>(url, body).then(responseBody),
     postUrl: <T> (url: string) => axios.post<T>(url).then(responseBody),
     put: <T> (url: string, body: object) => axios.put<T>(url, body).then(responseBody),
+    putUrl: <T> (url: string) => axios.put<T>(url).then(responseBody)
 }
 
 const Account = {
@@ -47,13 +50,24 @@ const Account = {
 }
 
 const Tests = {
-    list: (id: string) => requests.getMapping<Test[]>(`/tests/list/${id}?pageNumber=1&pageSize=20`),
+    list: (id: string) => requests.getMapping<Test[]>(`/tests/list/${id}?pageNumber=1&pageSize=30`),
+}
+
+const Questions = {
+    list: (id: string) => requests.get<QuestionOption[]>(`/questions/list/${id}?pageNumber=1&pageSize=30`),
+}
+
+const Testing = {
+    submit: (testId: string, userId: string, score: number) => requests.putUrl<null>
+    (`/update/testId=${testId}/userId=${userId}/score=${score}`),
 }
 
 const agent = 
 {
     Account,
-    Tests
+    Tests,
+    Questions,
+    Testing
 }
 
 export default agent;

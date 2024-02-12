@@ -22,7 +22,6 @@ export default class TestStore {
     }
   }
 
-
   get completedTests() {
     return this.userTests.filter(userTest => userTest.isCompleted);
   }
