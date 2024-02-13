@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { UserTest } from '../models/UserTest';
 import agent from '../api/agent';
+import { UserTest } from '../models/userTest';
 
 export default class TestStore {
   userTests: UserTest[] = [];

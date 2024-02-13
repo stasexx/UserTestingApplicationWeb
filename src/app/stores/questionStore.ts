@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { QuestionOption, Question, Option } from '../models/question';
+import { QuestionOption } from '../models/question';
 import agent from '../api/agent';
 
 export default class QuestionStore {

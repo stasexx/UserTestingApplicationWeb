@@ -8,7 +8,7 @@ interface QuestionListProps {
 }
 
 const QuestionList: React.FC<QuestionListProps> = observer(({ testId, onBack}) => {
-  const { questionStore, userStore, testStore } = useStore();
+  const { questionStore, userStore } = useStore();
   const userId = userStore.user?.id;
   const [selectedOptions, setSelectedOptions] = useState<{ [questionId: string]: string }>({});
 
