@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
+import { useStore } from '../../app/stores/store';
 
 interface LoginProps {
-  onLogin: (username: string) => void;
+  onLogin: (name: string) => void;
 }
 
 export const Login: React.FC<LoginProps> = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
+  const [name, setUsername] = useState('');
+  const { userStore } = useStore();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onLogin(username);
+    try {
+      await userStore.login({ name });
+      onLogin(name);
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
 
   return (
@@ -17,7 +24,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <input
         type="text"
         placeholder="Enter your name"
-        value={username}
+        value={name}
         onChange={(e) => setUsername(e.target.value)}
         required
       />
