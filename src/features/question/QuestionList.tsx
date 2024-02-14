@@ -46,7 +46,7 @@ const QuestionList: React.FC<QuestionListProps> = observer(({ testId, onBack}) =
 
   return (
     <div>
-      <h3>testStore.</h3>
+      <h3>TEST</h3>
       {questionStore.questionsWithOptions.map((questionOption) => (
         <div key={questionOption.questionDto.id}>
           <h3>{questionOption.questionDto.title}</h3>
